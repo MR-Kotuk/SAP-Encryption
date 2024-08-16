@@ -28,7 +28,7 @@ public class Caesar {
                     System.out.println(Const.GREEN_COLOR + "Write a key:" + Const.RESET_COLOR);
                     key = Integer.parseInt(input.nextLine());
                 } else {
-                    key = GenerateKey();
+                    key = generateKey();
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid key input. Please enter a valid number.");
@@ -47,7 +47,7 @@ public class Caesar {
         }
     }
 
-    private int GenerateKey() {
+    private int generateKey() {
         Random random = new Random();
 
         int privateKey = random.nextInt(Integer.MAX_VALUE);

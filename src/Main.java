@@ -9,7 +9,7 @@ public class Main {
     }
 
     private static void writeLogo() {
-        String logoPath = "C:/Users/MR-Kotuk/IdeaProjects/SAP Encryption/text/logo.txt";
+        String logoPath = "C:/Users/MR-Kotuk/IdeaProjects/SAP-Encryption/text/logo.txt";
         File logoFile = new File(logoPath);
 
         if (!logoFile.exists()) {
