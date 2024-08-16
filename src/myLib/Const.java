@@ -1,15 +1,16 @@
+package myLib;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-        writeLogo();
-        new Caesar().input();
-    }
+public class Const {
+    public static final String RESET_COLOR = "\033[0m";
 
-    private static void writeLogo() {
-        String logoPath = "C:/Users/MR-Kotuk/IdeaProjects/SAP-Encryption/text/logo.txt";
+    public static String RED_COLOR = "\033[0;31m";
+    public static String GREEN_COLOR = "\033[0;32m";
+
+    public static void writeLogo(String logoPath) {
         File logoFile = new File(logoPath);
 
         if (!logoFile.exists()) {
@@ -28,5 +29,5 @@ public class Main {
         }
 
         System.out.println(Const.RESET_COLOR);
-    }   
+    }
 }

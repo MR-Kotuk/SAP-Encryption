@@ -1,10 +1,14 @@
+package encryptions;
+
+import interfaces.IEncryption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import myLib.Const;
 
-public class Caesar {
+public class Caesar implements IEncryption {
     private final List<String> alphabet = new ArrayList<>(Arrays.asList(
     "A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F", "f", "G", "g", "H", "h", "I", "i",
         "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q", "q", "R", "r",
@@ -13,30 +17,28 @@ public class Caesar {
         "*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
     ));
     
+    @Override
+    public void main() {
+        System.out.println("------------------------------------------------------------");
+        Const.writeLogo("logo/caesar.txt");
+        input();
+    }
+
+    @Override
     public void input() {
         try (Scanner input = new Scanner(System.in)) {
             System.out.println(Const.GREEN_COLOR + "\nWrite a message:" + Const.RESET_COLOR);
             String message = input.nextLine();
 
-            System.out.println(Const.GREEN_COLOR + "Generate a key (Yes/No)?" + Const.RESET_COLOR);
-            String result = input.nextLine();
+            System.out.println(Const.GREEN_COLOR + "Write a key (if you don't have a key, press enter):" + Const.RESET_COLOR);
 
             int key;
-
             try {
-                if (!result.equalsIgnoreCase("Yes")) {
-                    System.out.println(Const.GREEN_COLOR + "Write a key:" + Const.RESET_COLOR);
-                    key = Integer.parseInt(input.nextLine());
-                } else {
-                    key = generateKey();
-                }
+                key = Integer.parseInt(input.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Invalid key input. Please enter a valid number.");
-                return;
-            } catch (Exception e) {
-                System.out.println("An unexpected error occurred: " + e.getMessage());
-                return;
+                key = generateKey();
             }
+            
 
             System.out.println(Const.RED_COLOR + "\nResult:\n" + Const.GREEN_COLOR + encryption(message, key) + Const.RESET_COLOR);
 
@@ -47,7 +49,8 @@ public class Caesar {
         }
     }
 
-    private int generateKey() {
+    @Override
+    public int generateKey() {
         Random random = new Random();
 
         int privateKey = random.nextInt(Integer.MAX_VALUE);
@@ -60,7 +63,8 @@ public class Caesar {
         return privateKey;
     }
 
-    private String encryption(String text, int key) {
+    @Override
+    public String encryption(String text, int key) {
         StringBuilder encryption = new StringBuilder();
 
         for (int i = 0; i < text.length(); i++) {
